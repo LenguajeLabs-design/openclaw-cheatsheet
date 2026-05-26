@@ -11,7 +11,7 @@
       document.documentElement.dataset.theme = storedTheme || (prefersDay ? "day" : "night");
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=5662d87">
+  <link rel="stylesheet" href="styles.css?v=9d0f1b4">
 </head>
 <body>
   <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to day mode">
@@ -45,6 +45,22 @@
         <a href="#troubleshooting">Troubleshooting</a>
         <a href="#top-commands">Top 10 Commands</a>
       </div>
+    </section>
+
+    <section class="search-panel card" aria-label="Search commands">
+      <div class="section-top">
+        <div>
+          <p class="section-label">Find Fast</p>
+          <h2>Search The Guide</h2>
+        </div>
+        <p class="result-count" data-result-count>15 sections</p>
+      </div>
+      <label class="search-box">
+        <span class="sr-only">Search commands, prompts, and playbooks</span>
+        <input type="search" data-search-input placeholder="Search commands, tags, prompts, or playbooks">
+      </label>
+      <div class="filter-row" data-filter-row aria-label="Filter by tag"></div>
+      <p class="empty-state" data-empty-state hidden>No matching sections. Try a broader command, tag, or workflow name.</p>
     </section>
 
     <div class="grid">
@@ -612,59 +628,6 @@ openclaw tasks audit</code></pre>
     </section>
   </main>
 
-  <script>
-    const themeToggle = document.querySelector("[data-theme-toggle]");
-    const themeLabel = document.querySelector("[data-theme-label]");
-    const copyButtons = document.querySelectorAll("[data-copy-button]");
-
-    function setTheme(theme) {
-      const nextTheme = theme === "day" ? "day" : "night";
-      const isDay = nextTheme === "day";
-
-      document.documentElement.dataset.theme = nextTheme;
-      localStorage.setItem("openclaw-theme", nextTheme);
-
-      if (themeLabel) {
-        themeLabel.textContent = isDay ? "Night mode" : "Day mode";
-      }
-
-      if (themeToggle) {
-        themeToggle.setAttribute("aria-label", isDay ? "Switch to night mode" : "Switch to day mode");
-      }
-    }
-
-    async function copyBlock(button) {
-      const block = button.closest("[data-copy-block]");
-      const code = block ? block.querySelector("code") : null;
-
-      if (!code) return;
-
-      const original = button.textContent;
-
-      try {
-        await navigator.clipboard.writeText(code.textContent);
-        button.textContent = "Copied";
-      } catch (error) {
-        button.textContent = "Failed";
-      }
-
-      setTimeout(() => {
-        button.textContent = original;
-      }, 1400);
-    }
-
-    copyButtons.forEach((button) => {
-      button.addEventListener("click", () => copyBlock(button));
-    });
-
-    setTheme(document.documentElement.dataset.theme);
-
-    if (themeToggle) {
-      themeToggle.addEventListener("click", () => {
-        const currentTheme = document.documentElement.dataset.theme;
-        setTheme(currentTheme === "day" ? "night" : "day");
-      });
-    }
-  </script>
+  <script src="app.js?v=9d0f1b4"></script>
 </body>
 </html>
