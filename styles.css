@@ -10,7 +10,26 @@
   --highlight: #79e3c4;
   --highlight-strong: #b9ffee;
   --warning: #ffc978;
+  --code-bg: #06101d;
+  --grid-line: rgba(255, 255, 255, 0.025);
   --shadow: 0 28px 70px rgba(0, 0, 0, 0.38);
+}
+
+html[data-theme="day"] {
+  --bg: #f5f8fc;
+  --bg-accent: #e8f0f9;
+  --panel: rgba(255, 255, 255, 0.92);
+  --panel-strong: rgba(245, 249, 253, 0.98);
+  --panel-soft: rgba(235, 244, 252, 0.82);
+  --border: rgba(49, 75, 112, 0.16);
+  --text: #101828;
+  --muted: #526276;
+  --highlight: #087f72;
+  --highlight-strong: #055c53;
+  --warning: #9a5b00;
+  --code-bg: #102033;
+  --grid-line: rgba(15, 35, 64, 0.055);
+  --shadow: 0 26px 64px rgba(38, 63, 94, 0.14);
 }
 
 * {
@@ -32,16 +51,44 @@ body {
     linear-gradient(180deg, #08101d 0%, #0a1422 45%, #060c16 100%);
 }
 
+html[data-theme="day"] body {
+  background:
+    radial-gradient(circle at top, rgba(60, 129, 196, 0.2), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(8, 127, 114, 0.12), transparent 26%),
+    linear-gradient(180deg, #f8fbff 0%, #eef5fb 48%, #e7f0f8 100%);
+}
+
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 42px 42px;
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.92), transparent 92%);
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  min-width: 6.6rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.65rem 0.9rem;
+  color: var(--highlight-strong);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+  font: 800 0.82rem "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: rgba(121, 227, 196, 0.38);
 }
 
 .page {
@@ -263,7 +310,7 @@ pre {
   overflow-x: auto;
   border: 1px solid rgba(121, 227, 196, 0.14);
   border-radius: 16px;
-  background: #06101d;
+  background: var(--code-bg);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
@@ -300,6 +347,17 @@ pre::-webkit-scrollbar-thumb {
 }
 
 @media (max-width: 640px) {
+  .theme-toggle {
+    position: sticky;
+    top: 0.75rem;
+    display: block;
+    margin: 0.75rem 0.75rem 0 auto;
+  }
+
+  .page {
+    padding-top: 2rem;
+  }
+
   .card {
     padding: 1.1rem;
     border-radius: 20px;

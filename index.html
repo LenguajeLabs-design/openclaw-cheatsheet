@@ -4,9 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OpenClaw Command Guide</title>
+  <script>
+    (() => {
+      const storedTheme = localStorage.getItem("openclaw-theme");
+      const prefersDay = window.matchMedia("(prefers-color-scheme: light)").matches;
+      document.documentElement.dataset.theme = storedTheme || (prefersDay ? "day" : "night");
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to day mode">
+    <span data-theme-label>Day mode</span>
+  </button>
+
   <main class="page">
     <section class="hero">
       <p class="eyebrow">Operator Reference</p>
@@ -18,7 +29,7 @@
       </p>
       <div class="hero-chips">
         <span class="chip">Static</span>
-        <span class="chip">Dark Theme</span>
+        <span class="chip">Day / Night Mode</span>
         <span class="chip">Mobile Friendly</span>
         <span class="chip">Copy Ready</span>
       </div>
@@ -602,7 +613,25 @@ openclaw tasks audit</code></pre>
   </main>
 
   <script>
+    const themeToggle = document.querySelector("[data-theme-toggle]");
+    const themeLabel = document.querySelector("[data-theme-label]");
     const copyButtons = document.querySelectorAll("[data-copy-button]");
+
+    function setTheme(theme) {
+      const nextTheme = theme === "day" ? "day" : "night";
+      const isDay = nextTheme === "day";
+
+      document.documentElement.dataset.theme = nextTheme;
+      localStorage.setItem("openclaw-theme", nextTheme);
+
+      if (themeLabel) {
+        themeLabel.textContent = isDay ? "Night mode" : "Day mode";
+      }
+
+      if (themeToggle) {
+        themeToggle.setAttribute("aria-label", isDay ? "Switch to night mode" : "Switch to day mode");
+      }
+    }
 
     async function copyBlock(button) {
       const block = button.closest("[data-copy-block]");
@@ -627,6 +656,15 @@ openclaw tasks audit</code></pre>
     copyButtons.forEach((button) => {
       button.addEventListener("click", () => copyBlock(button));
     });
+
+    setTheme(document.documentElement.dataset.theme);
+
+    if (themeToggle) {
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = document.documentElement.dataset.theme;
+        setTheme(currentTheme === "day" ? "night" : "day");
+      });
+    }
   </script>
 </body>
 </html>
