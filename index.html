@@ -4,20 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OpenClaw Command Guide</title>
-  <script>
-    (() => {
-      const storedTheme = localStorage.getItem("openclaw-theme");
-      const prefersDay = window.matchMedia("(prefers-color-scheme: light)").matches;
-      document.documentElement.dataset.theme = storedTheme || (prefersDay ? "day" : "night");
-    })();
-  </script>
-  <link rel="stylesheet" href="styles.css?v=9d0f1b4">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to day mode">
-    <span data-theme-label>Day mode</span>
-  </button>
-
   <main class="page">
     <section class="hero">
       <p class="eyebrow">Operator Reference</p>
@@ -29,7 +18,7 @@
       </p>
       <div class="hero-chips">
         <span class="chip">Static</span>
-        <span class="chip">Day / Night Mode</span>
+        <span class="chip">Dark Theme</span>
         <span class="chip">Mobile Friendly</span>
         <span class="chip">Copy Ready</span>
       </div>
@@ -39,28 +28,13 @@
       <h2>Start Here</h2>
       <div class="nav-grid">
         <a href="#daily-flow">Daily Flow</a>
+        <a href="#use-cases">Use Cases</a>
         <a href="#workspace">Workspace Anatomy</a>
         <a href="#heartbeat">Heartbeat Recipes</a>
         <a href="#prompts">Power Prompts</a>
         <a href="#troubleshooting">Troubleshooting</a>
         <a href="#top-commands">Top 10 Commands</a>
       </div>
-    </section>
-
-    <section class="search-panel card" aria-label="Search commands">
-      <div class="section-top">
-        <div>
-          <p class="section-label">Find Fast</p>
-          <h2>Search The Guide</h2>
-        </div>
-        <p class="result-count" data-result-count>15 sections</p>
-      </div>
-      <label class="search-box">
-        <span class="sr-only">Search commands, prompts, and playbooks</span>
-        <input type="search" data-search-input placeholder="Search commands, tags, prompts, or playbooks">
-      </label>
-      <div class="filter-row" data-filter-row aria-label="Filter by tag"></div>
-      <p class="empty-state" data-empty-state hidden>No matching sections. Try a broader command, tag, or workflow name.</p>
     </section>
 
     <div class="grid">
@@ -229,11 +203,136 @@ MEMORY.md      long-term memory</code></pre>
         </div>
       </section>
 
+      <section class="card" id="use-cases">
+        <div class="section-top">
+          <div>
+            <p class="section-label">Brainstorm Starters</p>
+            <h2>5. Possible Use Cases For Me</h2>
+          </div>
+          <div class="tag-row">
+            <span class="tag">ideas</span>
+            <span class="tag">workflow</span>
+          </div>
+        </div>
+        <p class="card-copy">
+          These are strong ways to use OpenClaw if you want it to save time, reduce context switching, and help you stay focused.
+        </p>
+        <div class="use-case-list">
+          <article class="use-case">
+            <div class="use-case-top">
+              <h3>1. Repo onboarding in one pass</h3>
+              <span class="tag">engineering</span>
+            </div>
+            <p>Have it read a codebase, explain the architecture, and surface the highest-leverage next moves.</p>
+            <div class="block" data-copy-block>
+              <div class="block-top">
+                <div class="tag-row">
+                  <span class="tag">onboarding</span>
+                  <span class="tag">repo</span>
+                </div>
+                <button class="copy-btn" type="button" data-copy-button>Copy</button>
+              </div>
+              <pre><code>Read this repo, identify the main architecture, and give me the three highest-leverage improvements.</code></pre>
+            </div>
+          </article>
+
+          <article class="use-case">
+            <div class="use-case-top">
+              <h3>2. Turn repeated work into a system</h3>
+              <span class="tag">skills</span>
+            </div>
+            <p>Use it to convert your recurring tasks into reusable skills, playbooks, or operator instructions.</p>
+            <div class="block" data-copy-block>
+              <div class="block-top">
+                <div class="tag-row">
+                  <span class="tag">repeatable</span>
+                  <span class="tag">skill</span>
+                </div>
+                <button class="copy-btn" type="button" data-copy-button>Copy</button>
+              </div>
+              <pre><code>Turn this repeated workflow into a reusable OpenClaw skill with clear steps, boundaries, and output format.</code></pre>
+            </div>
+          </article>
+
+          <article class="use-case">
+            <div class="use-case-top">
+              <h3>3. Daily operator cockpit</h3>
+              <span class="tag">daily</span>
+            </div>
+            <p>Use OpenClaw as a morning check-in tool that tells you what matters right now and what can wait.</p>
+            <div class="block" data-copy-block>
+              <div class="block-top">
+                <div class="tag-row">
+                  <span class="tag">daily</span>
+                  <span class="tag">focus</span>
+                </div>
+                <button class="copy-btn" type="button" data-copy-button>Copy</button>
+              </div>
+              <pre><code>Give me a concise operator brief for today: urgent items, active tasks, blocked work, and the next three practical steps.</code></pre>
+            </div>
+          </article>
+
+          <article class="use-case">
+            <div class="use-case-top">
+              <h3>4. Quiet personal assistant</h3>
+              <span class="tag">heartbeat</span>
+            </div>
+            <p>Have it monitor only genuinely important things so you get signal without turning your workflow into noise.</p>
+            <div class="block" data-copy-block>
+              <div class="block-top">
+                <div class="tag-row">
+                  <span class="tag">assistant</span>
+                  <span class="tag">heartbeat</span>
+                </div>
+                <button class="copy-btn" type="button" data-copy-button>Copy</button>
+              </div>
+              <pre><code>Create a HEARTBEAT.md that checks only urgent things, stays quiet otherwise, and avoids low-value status spam.</code></pre>
+            </div>
+          </article>
+
+          <article class="use-case">
+            <div class="use-case-top">
+              <h3>5. Fast troubleshooting partner</h3>
+              <span class="tag">debug</span>
+            </div>
+            <p>Ask it to narrow problems quickly, propose likely causes, and keep you from random trial and error.</p>
+            <div class="block" data-copy-block>
+              <div class="block-top">
+                <div class="tag-row">
+                  <span class="tag">debug</span>
+                  <span class="tag">triage</span>
+                </div>
+                <button class="copy-btn" type="button" data-copy-button>Copy</button>
+              </div>
+              <pre><code>Triage this issue like an operator: likely causes first, the fastest checks to run, and what I should ignore for now.</code></pre>
+            </div>
+          </article>
+
+          <article class="use-case">
+            <div class="use-case-top">
+              <h3>6. Focus guardrail when you’re overcomplicating</h3>
+              <span class="tag">clarity</span>
+            </div>
+            <p>Use it as a pushback layer that keeps you practical when you feel yourself starting to rabbit hole.</p>
+            <div class="block" data-copy-block>
+              <div class="block-top">
+                <div class="tag-row">
+                  <span class="tag">focus</span>
+                  <span class="tag">pushback</span>
+                </div>
+                <button class="copy-btn" type="button" data-copy-button>Copy</button>
+              </div>
+              <pre><code>Give me the next three practical steps only. Push back if I’m overcomplicating this or reaching for unnecessary work.</code></pre>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section class="card">
         <div class="section-top">
           <div>
             <p class="section-label">Get Ready</p>
-            <h2>5. Setup</h2>
+            <h2>6. Setup</h2>
           </div>
           <div class="tag-row">
             <span class="tag">setup</span>
@@ -268,7 +367,7 @@ MEMORY.md      long-term memory</code></pre>
         <div class="section-top">
           <div>
             <p class="section-label">Stay Useful, Stay Quiet</p>
-            <h2>6. Heartbeat Recipes</h2>
+            <h2>7. Heartbeat Recipes</h2>
           </div>
           <div class="tag-row">
             <span class="tag">heartbeat</span>
@@ -300,7 +399,7 @@ MEMORY.md      long-term memory</code></pre>
         <div class="section-top">
           <div>
             <p class="section-label">Active Work</p>
-            <h2>7. Tasks</h2>
+            <h2>8. Tasks</h2>
           </div>
           <div class="tag-row">
             <span class="tag">tasks</span>
@@ -335,7 +434,7 @@ MEMORY.md      long-term memory</code></pre>
         <div class="section-top">
           <div>
             <p class="section-label">Reusable Workflows</p>
-            <h2>8. Custom Skill Recipes</h2>
+            <h2>9. Custom Skill Recipes</h2>
           </div>
           <div class="tag-row">
             <span class="tag">skills</span>
@@ -365,7 +464,7 @@ MEMORY.md      long-term memory</code></pre>
         <div class="section-top">
           <div>
             <p class="section-label">Browser Control</p>
-            <h2>9. Browser Automation</h2>
+            <h2>10. Browser Automation</h2>
           </div>
           <div class="tag-row">
             <span class="tag">browser</span>
@@ -400,7 +499,7 @@ MEMORY.md      long-term memory</code></pre>
         <div class="section-top">
           <div>
             <p class="section-label">Decision Trees</p>
-            <h2>10. Troubleshooting Playbooks</h2>
+            <h2>11. Troubleshooting Playbooks</h2>
           </div>
           <div class="tag-row">
             <span class="tag">debug</span>
@@ -480,7 +579,7 @@ openclaw tasks audit</code></pre>
         <div class="section-top">
           <div>
             <p class="section-label">Fast Recovery</p>
-            <h2>11. Fix Things Fast</h2>
+            <h2>12. Fix Things Fast</h2>
           </div>
           <div class="tag-row">
             <span class="tag">debug</span>
@@ -511,7 +610,7 @@ openclaw tasks audit</code></pre>
         <div class="section-top">
           <div>
             <p class="section-label">Prompt Templates</p>
-            <h2>12. Power Prompts</h2>
+            <h2>13. Power Prompts</h2>
           </div>
           <div class="tag-row">
             <span class="tag">prompts</span>
@@ -553,7 +652,7 @@ openclaw tasks audit</code></pre>
         <div class="section-top">
           <div>
             <p class="section-label">Trust Checklist</p>
-            <h2>13. Safety / Boundaries Cheatsheet</h2>
+            <h2>14. Safety / Boundaries Cheatsheet</h2>
           </div>
           <div class="tag-row">
             <span class="tag">safety</span>
@@ -576,7 +675,7 @@ openclaw tasks audit</code></pre>
         <div class="section-top">
           <div>
             <p class="section-label">Stay Focused</p>
-            <h2>14. Don’t Rabbit Hole Mode</h2>
+            <h2>15. Don’t Rabbit Hole Mode</h2>
           </div>
           <div class="tag-row">
             <span class="tag">focus</span>
@@ -603,7 +702,7 @@ openclaw tasks audit</code></pre>
       <div class="section-top">
         <div>
           <p class="section-label">Fastest Hits</p>
-          <h2>15. Top 10 Commands</h2>
+          <h2>16. Top 10 Commands</h2>
         </div>
         <div class="tag-row">
           <span class="tag">daily</span>
@@ -628,6 +727,32 @@ openclaw tasks audit</code></pre>
     </section>
   </main>
 
-  <script src="app.js?v=9d0f1b4"></script>
+  <script>
+    const copyButtons = document.querySelectorAll("[data-copy-button]");
+
+    async function copyBlock(button) {
+      const block = button.closest("[data-copy-block]");
+      const code = block ? block.querySelector("code") : null;
+
+      if (!code) return;
+
+      const original = button.textContent;
+
+      try {
+        await navigator.clipboard.writeText(code.textContent);
+        button.textContent = "Copied";
+      } catch (error) {
+        button.textContent = "Failed";
+      }
+
+      setTimeout(() => {
+        button.textContent = original;
+      }, 1400);
+    }
+
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", () => copyBlock(button));
+    });
+  </script>
 </body>
 </html>
